@@ -1,0 +1,2 @@
+# GetCPUName
+ConsoleWrite('CPU Name: ' &amp; _GetCPUName() &amp; @CRLF)  ; Version: 1.00. AutoIt: V3.3.8.1 ; Retrieve the name of the CPU. Func _GetCPUName()     Local $oWMIService = ObjGet('winmgmts:{impersonationLevel = impersonate}!.rootcimv2')     Local $oColFiles = $oWMIService.ExecQuery('Select * From Win32_Processor')     If IsObj($oColFiles) Then         For $oObjectFile In $oColFiles             Return StringStripWS($oObjectFile.Name, 7)         Next     EndIf     Return SetError(1, 0, '') EndFunc   ;==>_GetCPUName
